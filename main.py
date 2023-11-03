@@ -170,9 +170,20 @@ def SetUpMode1():
                             command=OnMode1Start, width=10)
     stopButton = tk.Button(modeFrame, text="結束",
                            command=OnModel1Stop, width=10, state=tk.DISABLED)
-
+    
+    text = tk.Text(modeFrame, height=10, width=100)
+    rule = """使用方法:
+1.輸入指令必須以驚嘆號 "!" 開頭。
+2.感嘆號後面可以包含一個或多個指令，這些指令必須使用逗號 "," 來分隔。 如:"!左0.5,右0.3"
+3.指令的關鍵字為："跳", "左", "右","左跳", "右跳"。
+4.在每個關鍵字之後，須加上一個數字(可用小數點)，表示按住指定按鍵的時間（秒）。 如:"!左0.5"
+5.在指令讀取與執行期間，不會讀取其他指令。                
+"""
+    text.insert(tk.END, rule)     
+    text.config(state=tk.DISABLED)
     startButton.grid(row=0, column=0)
     stopButton.grid(row=0, column=1)
+    text.grid(row=1, columnspan=2, pady=5)
 
 
 def OnMode1Start():
